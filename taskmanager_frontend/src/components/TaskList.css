@@ -1,0 +1,60 @@
+/* Styling for the task list container */
+.task-list-container {
+    margin: 20px;
+  }
+  
+  .task-list-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  /* Table styling */
+  .task-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 1px solid #ddd; /* Border for the whole table */
+  }
+  
+  .task-table th, .task-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ddd; /* Border between table cells */
+  }
+  
+  .task-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
+  
+  .task-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .task-status {
+    cursor: pointer;
+  }
+  
+  .completed {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .delete-button {
+    background: #ff4c4c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .delete-button:hover {
+    background-color: #ff4c4c;
+  }
+  
+  .no-tasks {
+    font-size: 18px;
+    color: #888;
+  }
+  
