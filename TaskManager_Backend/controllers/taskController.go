@@ -40,7 +40,7 @@ func CreateTask(c *gin.Context) {
 	_, err := config.DB.Exec("insert into tasks (title, description, completed) values (?,?,?)",
 		task.Title, task.Description, task.Completed)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "unable to create tasks"})
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
 
@@ -51,7 +51,7 @@ func DeleteTask(c *gin.Context) {
 	id := c.Param("id")
 	_, err := config.DB.Exec("delete from tasks where id=?", id)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "unable to delete task"})
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
 
