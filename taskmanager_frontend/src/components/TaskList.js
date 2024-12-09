@@ -28,8 +28,20 @@ const TaskList = () => {
   }, []); // Empty dependency array to run only once when the component mounts
 
   // Delete task handler
-  const onDelete = (id) => {
-    setTasks(tasks.filter((task) => task.id !== id));
+  const onDelete = async (id) => {
+    try{
+      const response = await fetch(`http://localhost:8080/tasks/${id}`,
+        {
+          method: "DELETE",
+        });
+
+        if (!response.ok){
+          throw new Error("failed to delete task from backend");
+        }
+      setTasks(tasks.filter((task) => task.id !== id));
+    } catch (err) {
+      alert(`error deleting task: ${err.message}`);
+    }
   };
 
   // Toggle task completion handler
