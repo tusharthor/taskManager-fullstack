@@ -11,7 +11,11 @@ func SetupRouter() *gin.Engine {
 	router := gin.Default()
 	//enable cors (middleware) - very imp
 	router.Use(cors.Default())
-	router.GET("/tasks", controllers.GetTasks)
+
+	//routes
+	router.POST("/signup", controllers.Signup)
+	router.POST("/login", controllers.Login)
+	router.GET("/tasks/:userID", controllers.GetTasks)
 	router.POST("/tasks", controllers.CreateTask)
 	router.DELETE("/tasks/:id", controllers.DeleteTask)
 
