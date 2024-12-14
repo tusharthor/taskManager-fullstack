@@ -9,7 +9,8 @@ import (
 )
 
 func GetTasks(c *gin.Context) {
-	rows, err := config.DB.Query("select id, title, description, completed from tasks")
+	userID := c.Param("userID")
+	rows, err := config.DB.Query("select id, title, description, completed, user_id from tasks where user_id=?", userID)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "unable to fetch tasks"})
 		return
@@ -20,7 +21,7 @@ func GetTasks(c *gin.Context) {
 	for rows.Next() {
 		//single task
 		var task models.Task
-		if err := rows.Scan(&task.ID, &task.Title, &task.Description, &task.Completed); err != nil {
+		if err := rows.Scan(&task.ID, &task.Title, &task.Description, &task.Completed, &task.UserID); err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "error scanning tasks"})
 			return
 		}
